@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id           String       @id @default(uuid())
+  name         String
+  url          String
+  keywords     Keyword[]
+  activities   Activity[]
+  credentials  Credential[]
+  sitemapUrls  SitemapUrl[]
+  media        Media[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Keyword {
+  id        String   @id @default(uuid())
+  keyword   String
+  url       String
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Activity {
+  id         String   @id @default(uuid())
+  category   String
+  keywordId  String
+  targetUrl  String?
+  backlink   String
+  platform   String?
+  spamScore  Int?
+  traffic    Int?
+  date       String
+  projectId  String
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Credential {
+  id         String   @id @default(uuid())
+  category   String   // 'social', 'gmail', 'website'
+  key        String   // e.g., 'facebook-url'
+  value      String
+  projectId  String
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@unique([projectId, category, key])
+}
+
+model SitemapUrl {
+  id         String   @id @default(uuid())
+  url        String
+  title      String
+  status     String   @default("Live")
+  projectId  String
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Media {
+  id         String   @id @default(uuid())
+  name       String
+  url        String
+  type       String   // 'image', 'document', 'video'
+  projectId  String
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
