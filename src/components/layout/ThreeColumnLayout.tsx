@@ -48,30 +48,31 @@ export const ThreeColumnLayout = () => {
   return (
     <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto xl:overflow-hidden bg-transparent relative">
       
-      {/* Left Sidebar (Action Form) */}
-      <div className={`
-        ${leftSidebar.isOpen ? 'w-full xl:w-80 border-b xl:border-b-0 xl:border-r' : 'h-0 xl:h-auto xl:w-0 border-0'} 
-        transition-all duration-300 ease-in-out shrink-0 bg-white/80 backdrop-blur-xl border-blue-100/50 flex flex-col overflow-hidden shadow-[20px_0_40px_rgba(59,130,246,0.05)] z-10
-      `}>
-        {leftSidebar.isOpen && (
-          <div className="flex-1 overflow-y-auto w-full xl:w-80 flex flex-col max-h-[50vh] xl:max-h-none">
-            <div className="p-4 border-b border-slate-100 flex justify-between items-center shrink-0 bg-white">
-              <h3 className="font-bold text-slate-900 tracking-wide text-sm">Action Menu</h3>
-              <button onClick={() => setLeftSidebar({ isOpen: false, type: null })} className="text-slate-400 hover:text-slate-900 p-1 hover:bg-slate-100 rounded-lg transition-colors">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="flex-1 overflow-hidden">
-              {(leftSidebar.type === 'submitActivity' || leftSidebar.type === 'submitGMB') && leftSidebar.defaultCategory && (
-                <ActivityForm 
-                  category={leftSidebar.defaultCategory} 
-                  onClose={() => setLeftSidebar({ isOpen: false, type: null })} 
-                  isGMB={leftSidebar.type === 'submitGMB'}
-                />
-              )}
-            </div>
-          </div>
-        )}
+      {/* Action Form Overlay Background */}
+      {leftSidebar.isOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-50 transition-opacity"
+          onClick={() => setLeftSidebar({ isOpen: false, type: null })}
+        />
+      )}
+
+      {/* Action Form Slide-out Panel */}
+      <div className={`fixed inset-y-0 right-0 w-full md:w-[400px] bg-white shadow-[-20px_0_40px_rgba(0,0,0,0.1)] z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${leftSidebar.isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="p-4 md:p-6 border-b border-slate-100 flex justify-between items-center bg-white shrink-0">
+          <h3 className="font-bold text-slate-900 tracking-wide text-lg">Action Menu</h3>
+          <button onClick={() => setLeftSidebar({ isOpen: false, type: null })} className="text-slate-400 hover:text-slate-900 p-2 hover:bg-slate-100 rounded-xl transition-colors">
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto bg-slate-50/30">
+          {(leftSidebar.type === 'submitActivity' || leftSidebar.type === 'submitGMB') && leftSidebar.defaultCategory && (
+            <ActivityForm 
+              category={leftSidebar.defaultCategory} 
+              onClose={() => setLeftSidebar({ isOpen: false, type: null })} 
+              isGMB={leftSidebar.type === 'submitGMB'}
+            />
+          )}
+        </div>
       </div>
 
       {/* Center Area */}
