@@ -102,17 +102,23 @@ export const ThreeColumnLayout = () => {
       </div>
 
       {/* Right Sidebar */}
-      <div className="w-full xl:w-72 bg-white/70 backdrop-blur-xl border-t xl:border-t-0 xl:border-l border-blue-100/50 shrink-0 flex flex-col xl:overflow-y-auto shadow-[-4px_0_24px_rgba(59,130,246,0.03)] z-10 order-first xl:order-none max-h-[50vh] xl:max-h-none">
-        <div className="p-4 md:p-6 border-b border-blue-100/50 bg-white/40 flex justify-between items-center">
+      <div className={`w-full ${isRightMenuOpen ? 'xl:w-72' : 'xl:w-auto'} transition-all duration-300 bg-white/70 backdrop-blur-xl border-t xl:border-t-0 xl:border-l border-blue-100/50 shrink-0 flex flex-col xl:overflow-y-auto shadow-[-4px_0_24px_rgba(59,130,246,0.03)] z-10 order-first xl:order-none max-h-[50vh] xl:max-h-none`}>
+        <div className="p-4 md:p-6 border-b border-blue-100/50 bg-white/40 flex justify-between items-center gap-4">
           <div>
-            <h2 className="font-bold text-slate-900 tracking-wide text-lg">Resources & Tools</h2>
-            <p className="text-xs text-slate-500 mt-1">Manage project assets</p>
+            {isRightMenuOpen ? (
+              <>
+                <h2 className="font-bold text-slate-900 tracking-wide text-lg">Resources & Tools</h2>
+                <p className="text-xs text-slate-500 mt-1">Manage project assets</p>
+              </>
+            ) : (
+              <h2 className="font-bold text-slate-900 tracking-wide text-lg xl:hidden">Resources & Tools</h2>
+            )}
           </div>
-          <button onClick={() => setIsRightMenuOpen(!isRightMenuOpen)} className="xl:hidden text-slate-500 hover:text-slate-900 transition-colors">
+          <button onClick={() => setIsRightMenuOpen(!isRightMenuOpen)} className="text-slate-500 hover:text-slate-900 transition-colors shrink-0">
             {isRightMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-        <nav className={`p-4 space-y-1 overflow-y-auto ${isRightMenuOpen ? 'block' : 'hidden'} xl:block`}>
+        <nav className={`p-4 space-y-1 overflow-y-auto ${isRightMenuOpen ? 'block' : 'hidden'}`}>
           {rightMenuItems.map((item) => (
             <button
               key={item.id}
