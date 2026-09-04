@@ -101,24 +101,36 @@ export const ThreeColumnLayout = () => {
         </div>
       </div>
 
-      {/* Right Sidebar */}
-      <div className={`w-full ${isRightMenuOpen ? 'xl:w-72' : 'xl:w-auto'} transition-all duration-300 bg-white/70 backdrop-blur-xl border-t xl:border-t-0 xl:border-l border-blue-100/50 shrink-0 flex flex-col xl:overflow-y-auto shadow-[-4px_0_24px_rgba(59,130,246,0.03)] z-10 order-first xl:order-none max-h-[50vh] xl:max-h-none`}>
-        <div className="p-4 md:p-6 border-b border-blue-100/50 bg-white/40 flex justify-between items-center gap-4">
+      {/* Right Sidebar Overlay Button */}
+      <div className="fixed top-4 right-4 md:top-6 md:right-6 z-40">
+        <button 
+          onClick={() => setIsRightMenuOpen(!isRightMenuOpen)} 
+          className="flex items-center justify-center hover:opacity-80 transition-opacity focus:outline-none p-2.5 rounded-xl bg-white/70 backdrop-blur-md shadow-sm border border-blue-100/50 hover:bg-white"
+        >
+          <Menu className="w-8 h-8 text-blue-500" />
+        </button>
+      </div>
+
+      {/* Right Overlay Background */}
+      {isRightMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 transition-opacity"
+          onClick={() => setIsRightMenuOpen(false)}
+        />
+      )}
+
+      {/* Right Sidebar Slide-out Panel */}
+      <div className={`fixed inset-y-0 right-0 w-72 bg-white/95 backdrop-blur-xl border-l border-blue-100/50 flex flex-col shrink-0 shadow-[-20px_0_40px_rgba(0,0,0,0.1)] z-50 transform transition-transform duration-300 ease-in-out ${isRightMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="p-4 md:p-6 border-b border-blue-100/50 bg-white/40 flex justify-between items-center">
           <div>
-            {isRightMenuOpen ? (
-              <>
-                <h2 className="font-bold text-slate-900 tracking-wide text-lg">Resources & Tools</h2>
-                <p className="text-xs text-slate-500 mt-1">Manage project assets</p>
-              </>
-            ) : (
-              <h2 className="font-bold text-slate-900 tracking-wide text-lg xl:hidden">Resources & Tools</h2>
-            )}
+            <h2 className="font-bold text-slate-900 tracking-wide text-lg">Resources & Tools</h2>
+            <p className="text-xs text-slate-500 mt-1">Manage project assets</p>
           </div>
-          <button onClick={() => setIsRightMenuOpen(!isRightMenuOpen)} className="text-slate-500 hover:text-slate-900 transition-colors shrink-0">
-            {isRightMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <button onClick={() => setIsRightMenuOpen(false)} className="text-slate-500 hover:text-slate-900 transition-colors shrink-0">
+            <X className="w-6 h-6" />
           </button>
         </div>
-        <nav className={`p-4 space-y-1 overflow-y-auto ${isRightMenuOpen ? 'block' : 'hidden'}`}>
+        <nav className="p-4 space-y-1 overflow-y-auto">
           {rightMenuItems.map((item) => (
             <button
               key={item.id}
@@ -126,7 +138,7 @@ export const ThreeColumnLayout = () => {
               className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                 activeView === item.id 
                   ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md shadow-blue-500/20' 
-                  : 'text-slate-600 hover:bg-white hover:text-blue-700 border border-transparent hover:shadow-[0_2px_10px_rgba(59,130,246,0.08)]'
+                  : 'text-slate-600 hover:bg-slate-50 hover:text-blue-700 border border-transparent hover:shadow-[0_2px_10px_rgba(59,130,246,0.08)]'
               }`}
             >
               <item.icon className={`w-5 h-5 ${activeView === item.id ? 'text-white' : 'text-slate-400'}`} />
