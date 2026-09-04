@@ -42,15 +42,15 @@ export const ThreeColumnLayout = () => {
   if (!activeProject) return null;
 
   return (
-    <div className="flex-1 flex overflow-hidden bg-transparent relative">
+    <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto xl:overflow-hidden bg-transparent relative">
       
       {/* Left Sidebar (Action Form) */}
       <div className={`
-        ${leftSidebar.isOpen ? 'w-80 border-r' : 'w-0 border-r-0'} 
+        ${leftSidebar.isOpen ? 'w-full xl:w-80 border-b xl:border-b-0 xl:border-r' : 'h-0 xl:h-auto xl:w-0 border-0'} 
         transition-all duration-300 ease-in-out shrink-0 bg-white/80 backdrop-blur-xl border-blue-100/50 flex flex-col overflow-hidden shadow-[20px_0_40px_rgba(59,130,246,0.05)] z-10
       `}>
         {leftSidebar.isOpen && (
-          <div className="flex-1 overflow-y-auto w-80 flex flex-col">
+          <div className="flex-1 overflow-y-auto w-full xl:w-80 flex flex-col max-h-[50vh] xl:max-h-none">
             <div className="p-4 border-b border-slate-100 flex justify-between items-center shrink-0 bg-white">
               <h3 className="font-bold text-slate-900 tracking-wide text-sm">Action Menu</h3>
               <button onClick={() => setLeftSidebar({ isOpen: false, type: null })} className="text-slate-400 hover:text-slate-900 p-1 hover:bg-slate-100 rounded-lg transition-colors">
@@ -71,7 +71,7 @@ export const ThreeColumnLayout = () => {
       </div>
 
       {/* Center Area */}
-      <div className="flex-1 overflow-y-auto flex flex-col p-8 pb-32">
+      <div className="flex-1 xl:overflow-y-auto flex flex-col p-4 md:p-8 pb-32 order-1 xl:order-none">
         <div className="max-w-6xl mx-auto w-full">
           {activeView === 'overview' && <OverviewEngine />}
           {activeView === 'activities' && (
@@ -98,7 +98,7 @@ export const ThreeColumnLayout = () => {
       </div>
 
       {/* Right Sidebar */}
-      <div className="w-72 bg-white/70 backdrop-blur-xl border-l border-blue-100/50 shrink-0 flex flex-col overflow-y-auto shadow-[-4px_0_24px_rgba(59,130,246,0.03)] z-10">
+      <div className="w-full xl:w-72 bg-white/70 backdrop-blur-xl border-t xl:border-t-0 xl:border-l border-blue-100/50 shrink-0 flex flex-col xl:overflow-y-auto shadow-[-4px_0_24px_rgba(59,130,246,0.03)] z-10 order-first xl:order-none">
         <div className="p-6 border-b border-blue-100/50 bg-white/40">
           <h2 className="font-bold text-slate-900 tracking-wide text-lg">Resources & Tools</h2>
           <p className="text-xs text-slate-500 mt-1">Manage project assets</p>

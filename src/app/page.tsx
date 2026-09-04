@@ -9,7 +9,7 @@ export default function Home() {
   const { activeProject } = useAppContext();
 
   return (
-    <main className="flex h-screen w-full overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-slate-50 to-slate-100">
+    <main className="flex flex-col md:flex-row h-screen w-full overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-slate-50 to-slate-100">
       <Sidebar />
       {activeProject ? (
         <ThreeColumnLayout />

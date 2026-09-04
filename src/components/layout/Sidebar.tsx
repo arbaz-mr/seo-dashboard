@@ -8,7 +8,7 @@ export const Sidebar = () => {
   const { activeProject, setActiveProject, activeView, setActiveView } = useAppContext();
 
   return (
-    <aside className="w-64 bg-white/70 backdrop-blur-xl border-r border-blue-100/50 flex flex-col h-screen shrink-0 shadow-[4px_0_24px_rgba(59,130,246,0.03)] z-20 relative">
+    <aside className="w-full md:w-64 bg-white/70 backdrop-blur-xl border-b md:border-b-0 md:border-r border-blue-100/50 flex flex-col md:h-screen shrink-0 shadow-[4px_0_24px_rgba(59,130,246,0.03)] z-20 relative max-h-64 md:max-h-none">
       <div className="p-6 border-b border-blue-100/50">
         <h1 className="text-2xl font-black tracking-tighter bg-gradient-to-br from-blue-700 to-blue-500 bg-clip-text text-transparent flex items-center gap-2">
           <div className="w-6 h-6 bg-blue-600 rounded-md flex items-center justify-center shadow-lg shadow-blue-500/20">
