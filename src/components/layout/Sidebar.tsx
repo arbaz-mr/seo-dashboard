@@ -75,12 +75,7 @@ export const Sidebar = () => {
         )}
       </nav>
 
-      <div className="p-4 border-t border-slate-200/60 bg-slate-50/50">
-        <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-all font-medium">
-          <Settings className="w-5 h-5" />
-          <span>Settings</span>
-        </button>
-      </div>
+
     </aside>
   );
 };
