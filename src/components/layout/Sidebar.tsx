@@ -14,7 +14,7 @@ export const Sidebar = () => {
       <div className="fixed top-4 left-4 md:top-6 md:left-6 z-40">
         <button 
           onClick={() => setIsOpen(!isOpen)} 
-          className="flex items-center justify-center hover:opacity-80 transition-opacity focus:outline-none p-2.5 rounded-xl bg-white/70 backdrop-blur-md shadow-sm border border-blue-100/50 hover:bg-white"
+          className="flex items-center justify-center hover:opacity-80 transition-all focus:outline-none p-2.5 rounded-xl hover:bg-white/40"
           title="Toggle Projects"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
