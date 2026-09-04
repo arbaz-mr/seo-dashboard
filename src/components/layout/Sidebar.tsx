@@ -37,17 +37,7 @@ export const Sidebar = () => {
           <span>Projects</span>
         </button>
 
-        {activeProject && (
-          <div className="mt-8">
-            <div className="pt-4 pb-2 px-4 text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-              Active Project
-            </div>
-            <div className="px-4 py-2 mb-4 text-sm text-slate-700 font-bold truncate">
-              {activeProject.name}
-            </div>
-          </div>
-        )}
+
       </nav>
 
 
