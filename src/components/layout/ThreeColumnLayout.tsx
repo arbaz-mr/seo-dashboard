@@ -75,7 +75,7 @@ export const ThreeColumnLayout = () => {
       </div>
 
       {/* Center Area */}
-      <div className="flex-1 xl:overflow-y-auto flex flex-col p-4 md:p-8 pb-32 order-1 xl:order-none">
+      <div className="flex-1 xl:overflow-y-auto flex flex-col p-4 pt-20 md:p-8 md:pl-24 pb-32 order-1 xl:order-none relative">
         <div className="max-w-6xl mx-auto w-full">
           {activeView === 'overview' && <OverviewEngine />}
           {activeView === 'activities' && (
