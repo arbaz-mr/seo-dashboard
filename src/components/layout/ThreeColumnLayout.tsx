@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import { 
   FileText, Key, Tags, FolderOpen, MapPin, Activity, 
-  Image as ImageIcon, Hexagon, X, Home
+  Image as ImageIcon, Hexagon, X, Home, Menu
 } from 'lucide-react';
 import { ActivitiesEngine } from '@/components/project/ActivitiesEngine';
 import { GMBEngine } from '@/components/project/GMBEngine';
@@ -23,6 +23,7 @@ export const ThreeColumnLayout = () => {
   const { activeProject, activeView, setActiveView } = useAppContext();
   const [leftSidebar, setLeftSidebar] = useState<LeftSidebarState>({ isOpen: false, type: null });
   const [activeModal, setActiveModal] = useState<ModalState>(null);
+  const [isRightMenuOpen, setIsRightMenuOpen] = useState(false);
 
   const rightMenuItems = [
     { id: 'overview', label: 'Overview', icon: Home },
@@ -101,12 +102,17 @@ export const ThreeColumnLayout = () => {
       </div>
 
       {/* Right Sidebar */}
-      <div className="w-full xl:w-72 bg-white/70 backdrop-blur-xl border-t xl:border-t-0 xl:border-l border-blue-100/50 shrink-0 flex flex-col xl:overflow-y-auto shadow-[-4px_0_24px_rgba(59,130,246,0.03)] z-10 order-first xl:order-none">
-        <div className="p-6 border-b border-blue-100/50 bg-white/40">
-          <h2 className="font-bold text-slate-900 tracking-wide text-lg">Resources & Tools</h2>
-          <p className="text-xs text-slate-500 mt-1">Manage project assets</p>
+      <div className="w-full xl:w-72 bg-white/70 backdrop-blur-xl border-t xl:border-t-0 xl:border-l border-blue-100/50 shrink-0 flex flex-col xl:overflow-y-auto shadow-[-4px_0_24px_rgba(59,130,246,0.03)] z-10 order-first xl:order-none max-h-[50vh] xl:max-h-none">
+        <div className="p-4 md:p-6 border-b border-blue-100/50 bg-white/40 flex justify-between items-center">
+          <div>
+            <h2 className="font-bold text-slate-900 tracking-wide text-lg">Resources & Tools</h2>
+            <p className="text-xs text-slate-500 mt-1">Manage project assets</p>
+          </div>
+          <button onClick={() => setIsRightMenuOpen(!isRightMenuOpen)} className="xl:hidden text-slate-500 hover:text-slate-900 transition-colors">
+            {isRightMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-        <nav className="p-4 space-y-1">
+        <nav className={`p-4 space-y-1 overflow-y-auto ${isRightMenuOpen ? 'block' : 'hidden'} xl:block`}>
           {rightMenuItems.map((item) => (
             <button
               key={item.id}
