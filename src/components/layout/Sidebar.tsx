@@ -10,17 +10,18 @@ export const Sidebar = () => {
 
   return (
     <aside className={`w-full ${isOpen ? 'md:w-64' : 'md:w-auto'} transition-all duration-300 bg-white/70 backdrop-blur-xl border-b md:border-b-0 md:border-r border-blue-100/50 flex flex-col md:h-screen shrink-0 shadow-[4px_0_24px_rgba(59,130,246,0.03)] z-20 relative max-h-[50vh] md:max-h-none`}>
-      <div className="p-4 md:p-6 border-b border-blue-100/50 flex justify-between items-center gap-4">
-        <h1 className="text-2xl font-black tracking-tighter bg-gradient-to-br from-blue-700 to-blue-500 bg-clip-text text-transparent flex items-center gap-2">
-          <div className="w-6 h-6 bg-blue-600 rounded-md flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0">
-            <div className="w-2 h-3 bg-white rounded-sm transform translate-y-1"></div>
-            <div className="w-1.5 h-4 bg-blue-200 rounded-sm ml-0.5"></div>
-          </div>
-          {isOpen && <span>SEOdash.</span>}
-          {!isOpen && <span className="md:hidden">SEOdash.</span>}
-        </h1>
-        <button onClick={() => setIsOpen(!isOpen)} className="text-slate-500 hover:text-slate-900 transition-colors shrink-0">
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      <div className="p-4 md:p-6 border-b border-blue-100/50 flex justify-center items-center">
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="flex items-center justify-center hover:opacity-80 transition-opacity focus:outline-none p-2 rounded-xl hover:bg-slate-50"
+          title="Toggle Projects"
+        >
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="14" width="3.5" height="8" rx="1.5" fill="#4DD0E1" />
+            <rect x="7.5" y="10" width="3.5" height="12" rx="1.5" fill="#4DD0E1" />
+            <rect x="13" y="6" width="3.5" height="16" rx="1.5" fill="#4DD0E1" />
+            <rect x="18.5" y="2" width="3.5" height="20" rx="1.5" fill="#4DD0E1" />
+          </svg>
         </button>
       </div>
       
