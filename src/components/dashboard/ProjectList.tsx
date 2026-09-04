@@ -22,11 +22,11 @@ export const ProjectList = () => {
   };
 
   return (
-    <div className="flex-1 p-10 bg-transparent overflow-y-auto z-10">
+    <div className="flex-1 p-6 pt-24 md:p-10 md:pt-28 bg-transparent overflow-y-auto z-10">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-12">
           <div>
-            <h1 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Projects</h1>
+            <h1 className="text-4xl font-black text-slate-900 tracking-tight mb-2 mt-4 sm:mt-0">Projects</h1>
             <p className="text-slate-500">Manage your SEO and GMB campaigns.</p>
           </div>
           <button 
