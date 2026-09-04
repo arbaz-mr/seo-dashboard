@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import { 
   FileText, Key, Tags, FolderOpen, MapPin, Activity, 
-  Image as ImageIcon, Hexagon, X
+  Image as ImageIcon, Hexagon, X, Home
 } from 'lucide-react';
 import { ActivitiesEngine } from '@/components/project/ActivitiesEngine';
 import { GMBEngine } from '@/components/project/GMBEngine';
@@ -25,6 +25,9 @@ export const ThreeColumnLayout = () => {
   const [activeModal, setActiveModal] = useState<ModalState>(null);
 
   const rightMenuItems = [
+    { id: 'overview', label: 'Overview', icon: Home },
+    { id: 'activities', label: 'Activities Engine', icon: Activity },
+    { id: 'gmb', label: 'GMB Engine', icon: MapPin },
     { id: 'sitemap', label: 'Sitemap', icon: FileText },
     { id: 'credentials', label: 'Credentials', icon: Key },
     { id: 'keywords', label: 'Keywords', icon: Tags },

@@ -41,36 +41,6 @@ export const Sidebar = () => {
             <div className="px-4 py-2 mb-4 text-sm text-slate-700 font-bold truncate">
               {activeProject.name}
             </div>
-            
-            <div className="space-y-1">
-              <button 
-                onClick={() => setActiveView('overview')}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
-                  activeView === 'overview' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md shadow-blue-500/20' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
-                }`}
-              >
-                <Home className={`w-5 h-5 ${activeView === 'overview' ? 'text-white' : ''}`} />
-                <span>Overview</span>
-              </button>
-              <button 
-                onClick={() => setActiveView('activities')}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
-                  activeView === 'activities' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md shadow-blue-500/20' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
-                }`}
-              >
-                <Activity className={`w-5 h-5 ${activeView === 'activities' ? 'text-white' : ''}`} />
-                <span>Activities Engine</span>
-              </button>
-              <button 
-                onClick={() => setActiveView('gmb')}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
-                  activeView === 'gmb' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md shadow-blue-500/20' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
-                }`}
-              >
-                <MapPin className={`w-5 h-5 ${activeView === 'gmb' ? 'text-white' : ''}`} />
-                <span>GMB Engine</span>
-              </button>
-            </div>
           </div>
         )}
       </nav>
